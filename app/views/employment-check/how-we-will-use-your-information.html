@@ -1,0 +1,78 @@
+{% extends "di-govuk-one-login-service-header/layouts/service-header.html" %}
+{% extends "layouts/main.html" %}
+{% set pageName = 'How we will use your information' %}
+
+{% block pageTitle %}
+  {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{# {% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %} #}
+
+{% block header %}
+  {{ govukOneLoginServiceHeader({
+    signOutLink: "/one-login-signout",
+    oneLoginLink: "/#",
+    serviceNavigationParams: { 
+      serviceName: "Claim a targeted retention incentive payment for further education teachers",
+      navigationLabel: "Test label" 
+    }
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">  
+      <h1 class="govuk-heading-l">{{ pageName }}</h1>
+
+      <h2 class="govuk-heading-m">To process your application</h2>
+
+      <p class="govuk-body">We will check the information you have provided with the:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>further education provider where you currently teach</li>
+        <li>Student Loans Company</li>
+        <li>Teacher's Pension Scheme, if you have a teacher reference number (TRN) and choose to provide it</li>
+      </ul>
+
+
+      {{ govukDetails({
+        summaryText: "Where to find your TRN",
+        text: "Some stuff about finding the TRN."
+      }) }}
+
+      <h2 class="govuk-heading-m">How we'll pay you</h2>
+
+      <p class="govuk-body">DfE will make the payment directly to you.</p>
+      <p class="govuk-body">To complete the rest of your application, you will need your:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>National Insurance number</li>
+        <li>bank account details</li>
+      </ul>
+
+      <h2 class="govuk-heading-m">Student loan deductions</h2>
+      <p class="govuk-body">
+        If you are currently paying off a student loan, a deduction from your payment will go towards repaying it.
+      </p>
+
+      <h2 class="govuk-heading-m">Income Tax</h2>
+      <p class="govuk-body">
+        Your targeted retention incentive payment is taxable income. However DfE will pay any Income Tax and National Insurance contributions due to HMRC for you. This means the payment amount you receive may be lower following tax deductions.
+      </p>
+
+      <p class="govuk-body">
+        For more details, you can read about payments and deductions for the
+        <a href="#" class="govuk-link" target="_blank">targeted retention incentive payment (opens in new tab)</a>.
+      </p>
+
+      {{ govukButton({
+        text: "Continue",
+        href: "/one-login-returning-claimant/what-is-your-name"
+      }) }}
+  </div>
+</div>
+{% endblock %}

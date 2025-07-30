@@ -1,0 +1,112 @@
+{% extends "di-govuk-one-login-service-header/layouts/service-header.html" %}
+{% extends "layouts/main.html" %}
+{% set pageName = 'Personal details' %}
+
+{% block pageTitle %}
+  {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block header %}
+  {{ govukOneLoginServiceHeader({
+    signOutLink: "/one-login-signout",
+    oneLoginLink: "/#",
+    serviceNavigationParams: { 
+      serviceName: "Claim a targeted retention incentive payment for further education teachers",
+      navigationLabel: "Test label" 
+    }
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">  
+        {% if errors %}
+          {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: errors
+          }) }}
+        {% endif %}
+
+     <span class="govuk-caption-xl">{{ pageName }}</span>
+      <h1 class="govuk-heading-l">Enter the bank account details your salary is paid into</h1>
+
+    <p class="govuk-body">Enter the details for the account that your employer pays your salary into. We may need to check these details with your employer so we can make sure it's you.</p>
+
+
+
+    <form method="post" novalidate>
+      {% call govukFieldset({
+        legend: {
+          text: "Your bank details",
+          classes: "govuk-fieldset__legend--m govuk-visually-hidden",
+          isPageHeading: false
+        }
+      }) %}
+
+        {{ govukInput({
+          label: {
+            text: "Name on the account",
+            classes: "govuk-label--s"
+          },
+          hint: {
+            text: "Enter your name as it appears on your bank statement or bank card"
+          },
+          id: "return-claimant-bank-account-name",
+          name: "returnClaimantBankAccountName",
+          value: data.returnClaimantBankAccountName,
+          errorMessage: fieldErrors.returnClaimantBankAccountName,
+          classes: "govuk-input--width-20"
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Sort code",
+            classes: "govuk-label--s"
+          },
+          hint: {
+            text: "For example: 123456"
+          },
+          id: "return-claimant-sort-code",
+          name: "returnClaimantSortCode",
+          value: data.returnClaimantSortCode,
+          errorMessage: fieldErrors.returnClaimantSortCode,
+          classes: "govuk-input--width-10"
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Account number",
+            classes: "govuk-label--s"
+          },
+          hint: {
+            text: "For example: 00103694"
+          },
+          id: "return-claimant-account-number",
+          name: "returnClaimantAccountNumber",
+          value: data.returnClaimantAccountNumber,
+          errorMessage: fieldErrors.returnClaimantAccountNumber,
+          classes: "govuk-input--width-20"
+        }) }}
+
+      {% endcall %}
+
+      {{ govukDetails({
+        summaryText: "Problems entering these details",
+        text: "If you keep entering your bank details without success and you know the details you are entering are correct, you will be able to confirm these on the next screen."
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+    </form>
+    
+  </div>
+</div>
+{% endblock %}

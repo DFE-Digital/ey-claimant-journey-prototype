@@ -1,0 +1,87 @@
+{% extends "di-govuk-one-login-service-header/layouts/service-header.html" %}
+{% extends "layouts/main.html" %}
+{% set pageName = 'Personal details' %}
+
+{% block pageTitle %}
+  {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block header %}
+  {{ govukOneLoginServiceHeader({
+    signOutLink: "/one-login-signout",
+    oneLoginLink: "/#",
+    serviceNavigationParams: { 
+      serviceName: "Claim a targeted retention incentive payment for further education teachers",
+      navigationLabel: "Test label" 
+    }
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">  
+
+      {% if errors %}
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: errors
+      }) }}
+    {% endif %}
+
+     <span class="govuk-caption-xl">{{ pageName }}</span>
+      <h1 class="govuk-heading-l">Enter your full name</h1>
+
+      <p class="govuk-body">Enter your full name as it appears on any official documents, for example, your passport.</p>
+
+    <form method="post" novalidate>
+
+      {% call govukFieldset({
+        legend: {
+          text: "What is your name?",
+          classes: "govuk-fieldset__legend--m govuk-!-width-two-thirds govuk-visually-hidden",
+          isPageHeading: false
+        }
+      }) %}
+
+        {{ govukInput({
+          label: { text: "First name(s)" },
+          id: "return-claimant-first-name",
+          name: "returnClaimantFirstName",
+          classes: "govuk-!-width-two-thirds",
+          value: data.returnClaimantFirstName,
+          errorMessage: fieldErrors.returnClaimantFirstName
+        }) }}
+
+        {{ govukInput({
+          label: { text: "Middle name(s) Optional" },
+          id: "return-claimant-middle-name",
+          name: "returnClaimantMiddleName",
+          classes: "govuk-!-width-two-thirds",
+          value: data.returnClaimantMiddleName
+        }) }}
+
+        {{ govukInput({
+          label: { text: "Last name" },
+          id: "return-claimant-last-name",
+          name: "returnClaimantLastName",
+          classes: "govuk-!-width-two-thirds",
+          value: data.returnClaimantLastName,
+          errorMessage: fieldErrors.returnClaimantLastName
+        }) }}
+
+      {% endcall %}
+     
+
+      {{ govukButton({ text: "Continue" }) }}
+
+    </form>
+  </div>
+</div>
+{% endblock %}

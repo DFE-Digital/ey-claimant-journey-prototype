@@ -1,0 +1,87 @@
+{% extends "di-govuk-one-login-service-header/layouts/service-header.html" %}
+
+{% set pageName = 'Find another way to prove your identity' %}
+
+{% block pageTitle %}
+  {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{# {% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %} #}
+
+{% block header %}
+  {{ govukOneLoginServiceHeader({
+    signOutLink: "/one-login-signout",
+    oneLoginLink: "/#",
+    serviceNavigationParams: { 
+      serviceName: "Claim a targeted retention incentive payment for further education teachers",
+      navigationLabel: "Test label" 
+    }
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-!-margin-top-6">{% if error %}
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [ error ]
+          }) }}
+        {% endif %}
+      <h1 class="govuk-heading-l">{{ pageName }}</h1>
+
+      <h2 class="govuk-heading-m">If you do not have photo ID</h2>
+        <p class="govuk-body">
+          You can try proving your identity with the service you need to use. They may take other types of ID.
+        </p>
+
+        <h2 class="govuk-heading-m">If you have photo ID</h2>
+        <p class="govuk-body">
+          You can use photo ID to prove your identity using the GOV.UK ID Check app or at a Post Office.
+        </p>
+
+        {{ govukDetails({
+          summaryText: "Types of photo ID you can use",
+          html: 'List the types of ID'
+        }) }}
+
+      <form method="post" novalidate>
+        {{ govukRadios({
+            name: "findAnotherWay",
+            value: data.findAnotherWay,
+            errorMessage: error if error and error.href == "#findAnotherWay",
+             items: [
+            {
+              value: "goToService",
+              text: "Go to the service you need to use and find out if they take other types of ID"
+            },
+            {
+              value: "useOneLogin",
+              text: "Use photo ID to prove your identity with GOV.UK One Login"
+            },
+            {
+              divider: "or"
+            },
+            {
+              value: "bankDetails",
+              text: "Go back and try using your bank details to prove your identity"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+      <p class="govuk-body">
+        <a href="#" class="govuk-link">Contact the GOV.UK One Login team (opens in new tab)</a>
+      </p>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,71 @@
+{% extends "di-govuk-one-login-service-header/layouts/service-header.html" %}
+{% extends "layouts/main.html" %}
+{% set pageName = 'Enter work email' %}
+
+{% block pageTitle %}
+  {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block header %}
+  {{ govukOneLoginServiceHeader({
+    signOutLink: "/one-login-signout",
+    oneLoginLink: "/#",
+    serviceNavigationParams: { 
+      serviceName: "Claim a targeted retention incentive payment for further education teachers",
+      navigationLabel: "Test label" 
+    }
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    {% if error %}
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: [ error ]
+      }) }}
+    {% endif %}
+    <h1 class="govuk-heading-l">{{ pageName }}</h1>
+
+
+    <p class="govuk-body">
+      To verify your further education (FE) work email address we will send you an email with a 6-digit passcode.
+    </p>
+
+    <form method="post">
+      {{ govukInput({
+        name: "workEmail",
+        type: "email",
+        spellcheck: false,
+        autocomplete: "email",
+        errorMessage: error if error and error.href == "#workEmail",
+        value: data.workEmail,
+        fieldset: {
+          legend: {
+            text: "Enter your work email",
+            classes: "govuk-fieldset__legend--m govuk-visually-hidden"
+          }
+        }
+        
+      }) }}
+
+      {{ govukDetails({
+        summaryText: "How we'll use this information",
+        html: "We'll only use this email address to confirm your employment. We will not use it to send any updates about your application or link it to your GOV.UK One Login account."
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+    </form>
+ </div>
+</div>   
+{% endblock %}

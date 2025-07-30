@@ -1,0 +1,80 @@
+{% extends "di-govuk-one-login-service-header/layouts/service-header.html" %}
+{% extends "layouts/main.html" %}
+{% set pageName = 'Check your [FE_provider] work email' %}
+
+{% block pageTitle %}
+  {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block header %}
+  {{ govukOneLoginServiceHeader({
+    signOutLink: "/one-login-signout",
+    oneLoginLink: "/#",
+    serviceNavigationParams: { 
+      serviceName: "Claim a targeted retention incentive payment for further education teachers",
+      navigationLabel: "Test label" 
+    }
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    {% if error %}
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: [ error ]
+      }) }}
+    {% endif %}
+    <span class="govuk-caption-l">Email address verification</span>
+      <h1 class="govuk-heading-l">{{ pageName }}</h1>
+
+      <p class="govuk-body">
+        We have sent a 6-digit passcode to <strong>{{data.workEmail}}</strong>.
+      </p>
+
+      <p class="govuk-body">
+        The passcode will expire 15 minutes after you receive it.
+      </p>
+
+      <form method="post">
+        {{ govukInput({
+          label: {
+            text: "Enter the 6-digit security code"
+          },
+          id: "six-digit-security-code",
+          name: "sixDigitSecurityCode",
+          classes: "govuk-input--width-10",
+          type: "text",
+          inputmode: "numeric",
+          pattern: "[0-9]*",
+          autocomplete: "one-time-code",
+          value: data.sixDigitSecurityCode,
+          errorMessage: error if error and error.href == "#six-digit-security-code"
+        }) }}
+
+        <p class="govuk-body">
+          <a class="govuk-link" href="/one-login-returning-claimant/work-email">Resend passcode (you will be sent back to the email address page)</a>
+        </p>
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Confirm"
+          }) }}
+          {{ govukButton({
+            text: "Change email address",
+            classes: "govuk-button--secondary",
+            href: "/one-login-returning-claimant/work-email"
+          }) }}
+        </div>
+      </form>
+ </div>
+</div>   
+{% endblock %}
