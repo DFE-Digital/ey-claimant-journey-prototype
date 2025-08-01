@@ -1,6 +1,6 @@
 {% extends "di-govuk-one-login-service-header/layouts/service-header.html" %}
 {% extends "layouts/main.html" %}
-{% set pageName = 'Enter work email' %}
+{% set pageName = 'Enter your personal email address' %}
 
 {% block pageTitle %}
   {{ serviceName }} – GOV.UK Prototype Kit
@@ -18,7 +18,7 @@
     signOutLink: "/one-login-signout",
     oneLoginLink: "/#",
     serviceNavigationParams: { 
-      serviceName: "Claim a targeted retention incentive payment for further education teachers",
+      serviceName: "Claim an early years financial incentive payment",
       navigationLabel: "Test label" 
     }
   }) }}
@@ -37,9 +37,12 @@
 
 
     <p class="govuk-body">
-      To verify your further education (FE) work email address we will send you an email with a 6-digit passcode.
-    </p>
+      We'll send you an email with a 6-digit passcode to verify your personal email address.
 
+        <p class="govuk-body">
+      Your email address must match the one your employer has on file for you.
+    </p>
+    
     <form method="post">
       {{ govukInput({
         name: "workEmail",
