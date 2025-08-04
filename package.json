@@ -10,7 +10,7 @@
     "@govuk-prototype-kit/task-list": "2.0.0",
     "@x-govuk/govuk-prototype-components": "^3.0.6",
     "accessible-autocomplete": "^3.0.0",
-    "axios": "^1.7.2",
+    "axios": "^1.11.0",
     "dotenv": "^16.4.5",
     "esm": "^3.2.25",
     "govuk-country-and-territory-autocomplete": "^1.0.2",
@@ -18,7 +18,7 @@
     "govuk-one-login-service-header": "github:govuk-one-login/service-header",
     "govuk-prototype-kit": "13.16.2",
     "hmrc-frontend": "6.27.0",
-    "http-proxy-middleware": "^3.0.0",
+    "http-proxy-middleware": "^3.0.5",
     "node-fetch": "^3.3.2",
     "notifications-node-client": "^8.2.1"
   }
