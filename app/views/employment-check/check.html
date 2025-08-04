@@ -18,7 +18,7 @@
     signOutLink: "/one-login-signout",
     oneLoginLink: "/#",
     serviceNavigationParams: { 
-      serviceName: "Claim a targeted retention incentive payment for further education teachers",
+      serviceName: "Early years financial incentive payment service",
       navigationLabel: "Test label" 
     }
   }) }}
@@ -81,7 +81,7 @@
       },
       
       {
-        key: { text: "Would you like to provide your mobile number?" },
+        key: { text: "Mobile number provided" },
         value: { text: "Yes" },
         actions: { items: [{ href: "/change/provide-mobile", text: "Change", visuallyHiddenText: "mobile number preference" }] }
       },
@@ -93,15 +93,10 @@
       },
       
       {
-        key: { text: "How is your gender recorded on your employer’s payroll system?" },
+        key: { text: "Gender on employer’s payroll system" },
         value: { text: "Male" },
         actions: { items: [{ href: "#", text: "Change", visuallyHiddenText: "gender" }] }
       },
-      {
-        key: { text: "TRN (optional)" },
-        value: { text: "92345567" },
-        actions: { items: [{ href: "#", text: "Change", visuallyHiddenText: "TRN" }] }
-      }
     ]
   }) }}
 
@@ -113,10 +108,10 @@
       
         {{ mojAlert({
           variant: "warning",
-          title: "We couldn't verify these bank details",
+          title: "We could not verify these bank details",
           showTitleAsHeading: true,
           dismissible: false,
-          text: 'Please check before continuing',
+          text: 'Check before continuing',
           id: "bank-details"
         }) }}
       
@@ -149,8 +144,8 @@
         name: "Declaration",
         items: [
           {
-            value: "I have checked the details I've provided and I'm confident they are correct and the bank details match those held by my FE employer for the account my wages are paid into. I understand that submitting incorrect information may cause a delay to any payment.",
-            text: "I have checked the details I've provided and I'm confident they are correct and the bank details match those held by my FE employer for the account my wages are paid into. I understand that submitting incorrect information may cause a delay to any payment."
+            value: "I have checked the details I've provided and I'm confident they are correct. The bank details match those held by my employer for the account my wages are paid into. I understand that submitting incorrect information may cause a delay to any payment.",
+            text: "I have checked the details I've provided and I'm confident they are correct. The bank details match those held by my employer for the account my wages are paid into. I understand that submitting incorrect information may cause a delay to any payment."
           }
         ]
       }) }}
